@@ -52,16 +52,11 @@ func New(store store.Storer, config *config.Config, puller interface {
 	}
 
 	if config.OIDCIssuer != "" {
-		if strings.TrimSpace(config.OIDCRedirectURI) == "" {
-			return nil, fmt.Errorf("FUSION_OIDC_REDIRECT_URI is required when OIDC is enabled")
-		}
-
 		oidcAuth, err := auth.NewOIDC(
 			context.Background(),
 			config.OIDCIssuer,
 			config.OIDCClientID,
 			config.OIDCClientSecret,
-			config.OIDCRedirectURI,
 		)
 		if err != nil {
 			return nil, fmt.Errorf("initialize OIDC: %w", err)
