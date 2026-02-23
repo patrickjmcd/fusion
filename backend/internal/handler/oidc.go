@@ -11,13 +11,27 @@ func (h *Handler) oidcEnabled(c *gin.Context) {
 	dataResponse(c, gin.H{"enabled": h.oidcAuth != nil})
 }
 
+// oidcRedirectURI derives the OIDC callback URL from the incoming request,
+// so the same binary works for both local and production deployments without configuration.
+func oidcRedirectURI(c *gin.Context) string {
+	scheme := "https"
+	if c.Request.TLS == nil {
+		if proto := c.GetHeader("X-Forwarded-Proto"); proto != "" {
+			scheme = proto
+		} else {
+			scheme = "http"
+		}
+	}
+	return scheme + "://" + c.Request.Host + "/api/oidc/callback"
+}
+
 func (h *Handler) oidcLogin(c *gin.Context) {
 	if h.oidcAuth == nil {
 		badRequestError(c, "OIDC is not configured")
 		return
 	}
 
-	authURL, err := h.oidcAuth.AuthURL()
+	authURL, err := h.oidcAuth.AuthURL(oidcRedirectURI(c))
 	if err != nil {
 		internalError(c, err, "oidc auth url")
 		return
