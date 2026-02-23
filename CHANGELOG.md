@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/patrickjmcd/reedme/compare/v1.1.2...v1.2.0) (2026-02-23)
+
+
+### Features
+
+* update OIDC configuration to use redirect URI from request ([#6](https://github.com/patrickjmcd/reedme/issues/6)) ([c007aae](https://github.com/patrickjmcd/reedme/commit/c007aae96123c558b58918ac76f776b60b41a05b))
+
 ## [1.1.2](https://github.com/patrickjmcd/reedme/compare/v1.1.1...v1.1.2) (2026-02-23)
 
 
