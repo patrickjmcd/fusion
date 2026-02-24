@@ -50,9 +50,6 @@ services:
 
 - Pre-built binary: download from [Releases](https://github.com/patrickjmcd/reedme/releases)
 - Build from source: see [Contributing](./CONTRIBUTING.md)
-- One-click deployment:
-  - [Deploy on Fly.io](./fly.toml)
-  - [Deploy on Railway](https://railway.com/template/XSPFK0?referralCode=milo) (community maintained)
 
 ## Configuration
 
